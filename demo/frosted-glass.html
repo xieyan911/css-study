@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>磨砂玻璃特效</title>
+    <link rel="stylesheet" href="../static/css/common.css" />
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css" />
+    <style>
+        body {
+            background: url(../static/images/bg-frosted-glass.webp) center center no-repeat fixed;
+            background-size: cover;
+        }
+
+        #app {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .frosted-glass {
+            width: 500px;
+            height: 330px;
+            padding: 20px 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(25px);
+            box-sizing: border-box;
+        }
+
+        .title,
+        .sub-title {
+            width: 100%;
+            text-align: center;
+            text-shadow: -5px 5px 0 rgb(0 0 0 / 10%);
+        }
+
+        .title {
+            color: #FF7F00;
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        .sub-title {
+            color: #007FFF;
+            font-size: 18px;
+            margin-bottom: 35px;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/element-plus"></script>
+    <script src="https://unpkg.com/@element-plus/icons-vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="frosted-glass">
+            <div class="title">磨砂玻璃特效</div>
+            <div class="sub-title">backdrop-filter: blur(25px);</div>
+            <el-form :model="form" label-width="0" size="large">
+                <el-form-item>
+                    <el-input v-model="form.username" placeholder="用户名">
+                        <template #prepend>
+                            <el-icon :size="18">
+                                <User />
+                            </el-icon>
+                        </template>
+                    </el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-input v-model="form.password" placeholder="密码" type="password" show-password>
+                        <template #prepend>
+                            <el-icon :size="18">
+                                <Lock />
+                            </el-icon>
+                        </template>
+                    </el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" style="width: 100%;">登录</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+    </div>
+</body>
+
+<script>
+    const { createApp, reactive } = Vue
+    const { User, Lock } = ElementPlusIconsVue
+    const App = {
+        setup() {
+            const title = '磨砂玻璃特效'
+            const form = reactive({
+                username: '',
+                password: ''
+            })
+            return { title, form }
+        }
+    }
+    const app = createApp(App).use(ElementPlus)
+    app.component(Lock.name, Lock)
+    app.component(User.name, User)
+    app.mount('#app')
+</script>
+
+</html>
